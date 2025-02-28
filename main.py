@@ -14,18 +14,18 @@ chrome_path = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'
 
 ############# 자동 예매 원하는 설정으로 변경 ##############
 
-member_number = "0000000000" # 회원번호
-password= "password" # 비밀번호
-arrival = "동대구" # 출발지
-departure = "수서" # 도착지
-standard_date = "20240506" # 기준날짜 ex) 20221101
-standard_time = "12" # 기준 시간 ex) 00 - 22 // 2의 배수로 입력
+member_number = "2390965127" # 회원번호
+password= "i01020304#        " # 비밀번호
+arrival = "수서" # 출발지
+departure = "광주송정" # 도착지
+standard_date = "20250228" # 기준날짜 ex) 20221101
+standard_time = "16" # 기준 시간 ex) 00 - 22 // 2의 배수로 입력
 
 """
 현재 페이지에 나타난 기차 몇번째 줄부터 몇번째 줄의 기차까지 조회할지 선택 
 """
 from_train_number = 1 # 몇번째 기차부터 조회할지  min = 1, max = 10
-to_train_number = 10 # 몇번째 기차까지 조회할지 min = from_train_number, max = 10
+to_train_number = 5 # 몇번째 기차까지 조회할지 min = from_train_number, max = 10
 
 #################################################################
 
@@ -62,56 +62,56 @@ driver.implicitly_wait(5)
 
 
 # 출발지 입력
-dep_stn = driver.find_element(By.ID, 'dptRsStnCdNm')
-dep_stn.clear()
+dep_stn = 드라이버.찾기_element(By).ID, 'dptRsStnCdNm')
+dep_stn.clear ()
 dep_stn.send_keys(arrival)
 
 # 도착지 입력
-arr_stn = driver.find_element(By.ID, 'arvRsStnCdNm')
-arr_stn.clear()
+arr_stn = 드라이버.find_element(By).ID, 'arvRsStnCdNm')
+arr_stn.clear ()
 arr_stn.send_keys(departure)
 
 # 날짜 드롭다운 리스트 보이게
-# elm_dptDt = driver.find_element(By.ID, "dptDt")
-# driver.execute_script("arguments[0].setAttribute('style','display: True;)", elm_dptDt)
+# elm_dptDt = 드라이버.find_element(By).ID, "dptDt")
+# driver.execute_script ("arguments[0].setAttribute('style', '디스플레이: 사실입니다;)", elm_dptDt
 
-Select(driver.find_element(By.ID,"dptDt")).select_by_value(standard_date)
+선택(드라이버).find_element(By).ID "dptDt"select_by_value(표준_날짜)
 
 # 출발 시간
-# eml_dptTm = driver.find_element(By.ID, "dptTm")
-# driver.execute_script("arguments[0].setAttribbute('style','display:True;')", eml_dptTm)
+# eml_dptTm = driver.find_element(By).ID, "dptTm")
+# driver.execute_script ("arguments[0].setAttributbute('style', '디스플레이:True;')", eml_dptTm)
 
-Select(driver.find_element(By.ID, "dptTm")).select_by_visible_text(standard_time)
+선택(드라이버).find_element(By).ID, "dptTm".select_by_visible_text(표준_시간)
 
 # 조회하기 버튼
-driver.find_element(By.XPATH, "//input[@value='조회하기']").click()
+운전자.find_element(By).XPATH, "//input[@value='조회하기']"클릭 ()"
 
 
-train_list = driver.find_elements(By.CSS_SELECTOR, "#result-form > fieldset > \
-div.tbl_wrap.th_thead > table > tbody > tr")
+train_list = 드라이버.find_elements(By).CSS_SELECTOR, "#결과 양식 > 필드셋 > \\"
+div.tbl_wrap.th_thead > 테이블 > tbody > tr")
 
-print(train_list)
+인쇄(train_list)
 
 
-while True: 
-    try:
-        for i in range(from_train_number, to_train_number + 1):
-            standard_seat = driver.find_element(By.CSS_SELECTOR, f"#result-form > fieldset > div.tbl_wrap.th_thead > table > tbody > tr:nth-child({i}) > td:nth-child(7)").text
+사실일 때: 
+ 시도:
+ i 범위(_train_number, to_train_number + 1)에 대해:
+ 표준_좌석 = 드라이버.find_element(By).CSS_SELECTOR, f"#결과 형식 > 필드셋 > div.tbl_wrap.t_thead > 표 > tbody > tr:n번째 아이 ({i}) > td:n번째 아이(7)".text
 
-            if "예약하기" in standard_seat:
-                print("예약 가능 클릭")
-                driver.find_element(By.XPATH, f"/html/body/div[1]/div[4]/div/div[3]/div[1]/\
-                form/fieldset/div[6]/table/tbody/tr[{i}]/td[7]/a/span").click()
-                driver.implicitly_wait(3)
+ 표준 좌석에서 "예약하기"인 경우:
+ print("예약 가능 클릭")
+ 운전자.find_element(By).XPATH, f"/html/body/div[1]/div[4]/div/div[3]/div[1]/\
+ 양식/필드셋/div[6]/테이블/tbody/tr[i]/td[7]/a/span")을 클릭합니다. ()을 클릭합니다
+ 드라이버.implicitly_wait(3)
 
-                if driver.find_elements(By.ID, 'isFalseGotoMain'):
-                    reserved = True
-                    print('예약 성공')
-                    webbrowser.get(chrome_path).open("https://etk.srail.kr/hpg/hra/02/selectReservationList.do?pageId=TK0102010000")
-                    break
+ 운전자라면.find_elements(By).ID: 'isFalseGotoMain'
+ 예약 = 참
+ print('예약 성공')
+ webrowser.get(chrome_path.open ("https://etk.srail.kr/hpg/hra/02/selectReservationList.do?pageId=TK0102010000 ")
+ 브레이크.
 
-                else:
-                    print("잔여석 없음. 다시 검색")
+ 그렇지 않으면:
+ print("잔여석 없음. 다시 검색")
                     driver.back() #뒤로가기
                     driver.implicitly_wait(5)
 
