@@ -14,12 +14,12 @@ chrome_path = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'
 
 ############# 자동 예매 원하는 설정으로 변경 ##############
 
-member_number = "0000000000" # 회원번호
-password= "password" # 비밀번호
-arrival = "동대구" # 출발지
+member_number = "2390965127" # 회원번호
+password= "i01020304#" # 비밀번호
+arrival = "광주송정" # 출발지
 departure = "수서" # 도착지
-standard_date = "20240506" # 기준날짜 ex) 20221101
-standard_time = "12" # 기준 시간 ex) 00 - 22 // 2의 배수로 입력
+standard_date = "20250228" # 기준날짜 ex) 20221101
+standard_time = "16" # 기준 시간 ex) 00 - 22 // 2의 배수로 입력
 
 """
 현재 페이지에 나타난 기차 몇번째 줄부터 몇번째 줄의 기차까지 조회할지 선택 
@@ -62,29 +62,29 @@ driver.implicitly_wait(5)
 
 
 # 출발지 입력
-dep_stn = driver.find_element(By.ID, 'dptRsStnCdNm')
-dep_stn.clear()
+dep_stn = 드라이버.find_element(By).ID, 'dptRsStnCdNm')
+dep_stn.clear ()
 dep_stn.send_keys(arrival)
 
 # 도착지 입력
-arr_stn = driver.find_element(By.ID, 'arvRsStnCdNm')
-arr_stn.clear()
+arr_stn = 드라이버.find_element(By).ID, 'arvRsStnCdNm')
+arr_stn.clear ()
 arr_stn.send_keys(departure)
 
 # 날짜 드롭다운 리스트 보이게
-# elm_dptDt = driver.find_element(By.ID, "dptDt")
-# driver.execute_script("arguments[0].setAttribute('style','display: True;)", elm_dptDt)
+# elm_dptDt = 드라이버.find_element(By).ID, "dptDt")
+# driver.execute_script ("arguments[0].setAttribute('style', '디스플레이: 사실입니다;)", elm_dptDt
 
-Select(driver.find_element(By.ID,"dptDt")).select_by_value(standard_date)
+선택(드라이버).find_element(By).ID "dptDt"select_by_value(표준_날짜)
 
 # 출발 시간
-# eml_dptTm = driver.find_element(By.ID, "dptTm")
-# driver.execute_script("arguments[0].setAttribbute('style','display:True;')", eml_dptTm)
+# eml_dptTm = driver.find_element(By).ID, "dptTm")
+# driver.execute_script ("arguments[0].setAttributbute('style', '디스플레이:True;')", eml_dptTm)
 
-Select(driver.find_element(By.ID, "dptTm")).select_by_visible_text(standard_time)
+선택(드라이버).find_element(By).ID, "dptTm".select_by_visible_text(표준_시간)
 
 # 조회하기 버튼
-driver.find_element(By.XPATH, "//input[@value='조회하기']").click()
+운전자.find_element(By).XPATH, "//input[@value='조회하기']"클릭 ()"
 
 
 train_list = driver.find_elements(By.CSS_SELECTOR, "#result-form > fieldset > \
